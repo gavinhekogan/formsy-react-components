@@ -21,8 +21,10 @@ var Input = React.createClass({
         type: React.PropTypes.oneOf(['color', 'date', 'datetime', 'datetime-local', 'email', 'hidden', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']),
         addonBefore: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
         addonAfter: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
+        inputWrapperClassName: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array, React.PropTypes.object]),
         buttonBefore: React.PropTypes.node,
-        buttonAfter: React.PropTypes.node
+        buttonAfter: React.PropTypes.node,
+        spanWrapInput: React.propTypes.bool
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -31,7 +33,9 @@ var Input = React.createClass({
             addonBefore: null,
             addonAfter: null,
             buttonBefore: null,
-            buttonAfter: null
+            buttonAfter: null,
+            inputWrapperClassName: '',
+            spanWrapInput: false
         };
     },
 
@@ -94,9 +98,22 @@ var Input = React.createClass({
     },
 
     renderInputGroup: function renderInputGroup(element) {
+        var cssClasses = {
+            inputWrapper: ['input-group']
+        };
+        if (inputWrapperClassName) {
+            cssClasses.inputWrapper.push(this.props.inputWrapperClassName);
+        }
+        if (spanWrapInput) {
+            element = React.createElement(
+                'span',
+                { className: 'formsyInputWrapper' },
+                element
+            );
+        }
         return React.createElement(
             'div',
-            { className: 'input-group' },
+            { className: classNames(cssClasses.inputWrapper) },
             this.renderAddon(this.props.addonBefore),
             this.renderButton(this.props.buttonBefore),
             element,
