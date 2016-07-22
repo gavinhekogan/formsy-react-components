@@ -23,8 +23,7 @@ var Input = React.createClass({
         addonAfter: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
         inputWrapperClassName: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array, React.PropTypes.object]),
         buttonBefore: React.PropTypes.node,
-        buttonAfter: React.PropTypes.node,
-        spanWrapInput: React.propTypes.bool
+        buttonAfter: React.PropTypes.node
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -34,8 +33,7 @@ var Input = React.createClass({
             addonAfter: null,
             buttonBefore: null,
             buttonAfter: null,
-            inputWrapperClassName: '',
-            spanWrapInput: false
+            inputWrapperClassName: ''
         };
     },
 
@@ -104,13 +102,11 @@ var Input = React.createClass({
         if (inputWrapperClassName) {
             cssClasses.inputWrapper.push(this.props.inputWrapperClassName);
         }
-        if (spanWrapInput) {
-            element = React.createElement(
-                'span',
-                { className: 'formsyInputWrapper' },
-                element
-            );
-        }
+        element = React.createElement(
+            'span',
+            { className: 'formsyInputWrapper' },
+            element
+        );
         return React.createElement(
             'div',
             { className: classNames(cssClasses.inputWrapper) },
