@@ -23,6 +23,7 @@ var Input = React.createClass({
         addonBefore: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
         addonAfter: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
         inputWrapperClassName: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array, React.PropTypes.object]),
+        btnWrapperClassName: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.array, React.PropTypes.object]),
         buttonBefore: React.PropTypes.node,
         buttonAfter: React.PropTypes.node
     },
@@ -34,7 +35,8 @@ var Input = React.createClass({
             addonAfter: null,
             buttonBefore: null,
             buttonAfter: null,
-            inputWrapperClassName: ''
+            inputWrapperClassName: '',
+            btnWrapperClassName: ''
         };
     },
 
@@ -134,9 +136,13 @@ var Input = React.createClass({
         if (!button) {
             return false;
         }
+        var btnWrapperClass = ['input-group-btn'];
+        if (this.props.btnWrapperClassName) {
+            btnWrapperClass.push(this.props.btnWrapperClassName);
+        }
         return React.createElement(
             'span',
-            { className: 'input-group-btn' },
+            { className: classNames(btnWrapperClass) },
             button
         );
     }
