@@ -10,6 +10,7 @@ var ComponentMixin = require('./mixins/component');
 var Row = require('./row');
 var Icon = require('./icon');
 var propUtilities = require('./prop-utilities');
+var classNames = require('classnames/dedupe');
 
 var Input = React.createClass({
     displayName: 'Input',
