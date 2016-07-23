@@ -99,7 +99,7 @@ var Input = React.createClass({
         var cssClasses = {
             inputWrapper: ['input-group']
         };
-        if (inputWrapperClassName) {
+        if (this.props.inputWrapperClassName) {
             cssClasses.inputWrapper.push(this.props.inputWrapperClassName);
         }
         element = React.createElement(
